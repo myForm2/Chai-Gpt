@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chai Gpt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>html,body{display:flex;
+  flex-direction: column;
+  height:100%;
+  background: linear-gradient(to bottom  right,#f4f4f4,lightblue)
+}
+.ai,.user{font-family: Inter;}
+img{
+  height: 80px;
+  filter: invert();
+}
+.header{background:#1877F2;
+text-align: center;
+font-family:Inter;
+border-radius: 1px;
+color:#f4f4f4;
+  
+}
+.ft{
+  background: #D2EAF9;
+  padding-top:.1px;
+  padding-bottom: .1px;
+  
+  margin-top: 100%;
+  
+  
+}
+#msg{padding-right: 60%;
+padding-top: 10px;
+  border:2px solid aliceblue;
+  outline: none;
+  border-radius: 10px;
+  padding-bottom: 10px;
+margin-left: 50px;
+  
+}
+#msg:focus{border:2px solid #1877F2 ;}
+#send:hover{background: mediumaquamarine}
+.user{color:black;
+  background: #F7F7F8;
+  padding-left:;
+  margin-left:65%;
+  margin-right: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  display:flex;
+  
+}
+.ai{font-weight: 900;
+  margin-top: 50px;
+}
+#send{
+  transition:all .5s ease;
+  border:none;
+  background: #1877F2;
+  color:white;
+  padding:8px;
+  margin-left: 2px;
+  border-radius:10px;
+  margin-bottom: 25px;
+  padding-bottom:10px ;
+  margin-top: 25px;
+}
+
+#list{flex:1;
+  overflow-y: auto;
+}</style>
+</head>
+<body>
+  <div class="header"><img src="ai.png"></div>
+  
+  <ul id="list"></ul>
+  <div class="ft">
+    <input type="text" placeholder="Type Your Question" id="msg"
+    >
+    <button id="send">Send</button>
+  </div>
+  
+  
+  
+  <script src="script.js">const msg = document.getElementById("msg");
+const list= document.getElementById("list");
+const send= document.getElementById("send");
+
+
+let database= {
+  "what is the law of conservation of mass?": "mass can neither be created nor destroyed in a chemical reaction.",
+  "what is a balanced chemical equation?": "an equation in which the number of atoms of each element is equal on both sides.",
+  "what is the valency of hydrogen?": "the valency of hydrogen is 1.",
+  "what are the types of chemical reactions?": "combination, decomposition, displacement, double displacement, and oxidation-reduction reactions.",
+  "what is ph?": "ph is a scale used to measure how acidic or basic",
+  "what is the difference between a virus and a bacterium?": "viruses are non-living and need a host to reproduce, while bacteria are living cells that can reproduce on their own.",
+  "how does photosynthesis work?": "plants use sunlight, carbon dioxide, and water to make food (glucose) and oxygen through a process called photosynthesis.",
+  "what is newton's third law of motion?": "for every action, there is an equal and opposite reaction.",
+  "why is the sky blue?": "because blue light from the sun is scattered in all directions by the earth's atmosphere.",
+  "what are the three states of matter?": "solid, liquid, and gas.",
+  "what is the role of mitochondria in a cell?": "mitochondria are the powerhouses of the cell — they produce energy.",
+  "how do earthquakes happen?": "earthquakes occur due to sudden movements of tectonic plates beneath the earth's surface.",
+  "what is an atom made of?": "atoms are made of protons, neutrons, and electrons.",
+  "what are antibiotics used for?": "antibiotics are used to kill or stop the growth of bacteria.",
+  "why does ice float on water?": "because ice is less dense than liquid water.",
+  "what does 'resilient' mean?": "able to recover quickly from difficulties or tough situations.",
+  "what is the opposite of 'optimistic'?": "pessimistic.",
+  "difference between 'affect' and 'effect'?": "'affect' is a verb meaning to influence; 'effect' is a noun meaning the result.",
+  "use 'although' in a sentence.": "although it was raining, we still went outside.",
+  "what is a simile? give an example.": "a simile is a comparison using 'like' or 'as', e.g., 'as brave as a lion'.",
+  "what is an idiom?": "an idiom is a phrase whose meaning is different from the literal words, like 'spill the beans' (reveal a secret).",
+  "what does 'break the ice' mean?": "to start a conversation in a social situation.",
+  "what’s the plural of 'crisis'?": "crises.",
+  "what is a verb? give examples.": "a verb is an action word, like 'run', 'eat', or 'think'.",
+  "what is an adjective?": "an adjective describes a noun, like 'happy', 'blue', or 'tall'."
+
+  }
+  send.addEventListener("click"
+    ,function () {
+      const user=document.createElement('li');const question= msg.value.trim().toLowerCase();
+      user.textContent="‎ ‎ ‎ ‎ ‎ ‎ " +question;
+      user.className=("user")
+      list.appendChild(user);
+      
+      const ai=document.createElement('li');
+     if(database[question]){ ai.textContent= database[question]}
+     else{ai.textContent=`sorry,I dont know the answer,but you can ask me the following 
+     1. what is the law of conservation of mass?
+2. what is a balanced chemical equation?
+3. what is the valency of hydrogen?
+4. what are the types of chemical reactions?
+5. what is ph?
+6. what is the difference between a virus and a bacterium?
+7. how does photosynthesis work?
+8. what is newton's third law of motion?
+9. why is the sky blue?
+10. what are the three states of matter?
+11. what is the role of mitochondria in a cell?
+12. how do earthquakes happen?
+13. what is an atom made of?
+14. what are antibiotics used for?
+15. why does ice float on water?
+16. what does 'resilient' mean?
+17. what is the opposite of 'optimistic'?
+18. difference between 'affect' and 'effect'?
+19. use 'although' in a sentence.
+20. what is a simile? give an example.
+21. what is an idiom?
+22. what does 'break the ice' mean?
+23. what’s the plural of 'crisis'?
+24. what is a verb? give examples.
+25. what is an adjective?
+      `}
+      list.appendChild(ai);
+      ai.className=("ai");
+    }
+    
+  ) </script>
+</body>
+</html>
